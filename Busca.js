@@ -24,14 +24,13 @@ class Busca {
         let x = this.vetor1;
         let y = this.vetor2;
         let z = this.vetor3;
-        let array = [x, y, z];
-        if (x < y) {
-            array.splice(0);
-        }
-        if (x < z) {
+        const array = [x, y, z];
+        if (x > y) {
             array.splice(1);
         }
-        return array;
+        if (y > z) {
+            array.splice(2);
+        }
     }
 }
 const ordena = new Busca(1, 3, 2);
