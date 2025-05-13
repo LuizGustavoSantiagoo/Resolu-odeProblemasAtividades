@@ -1,50 +1,37 @@
 class Dados {
-  private list: number[] = [];
+  private list: string[];
+  private quantidade: number;
 
-  constructor(nums: number, numMax: number) {
-    for (let i: number = 0; i <= nums; i++) {
-      this.list.push(Math.ceil(Math.random() * numMax));
+  constructor(quantidade: number) {
+    this.quantidade = quantidade;
+    this.list = [];
+    this.preencherArray(this.list, quantidade);
+  }
+
+  preencherArray(array: string[], quantidade: number): string[] {
+    for (let i = 0; i < quantidade; i++) {
+       const numero = Math.floor(Math.random() * quantidade);
+      array.push(numero.toString());
     }
-    this.toString(this.list);
+    return array;
   }
 
-  public returnList() {
-    return "[" + this.list + "]";
+  getArray():string[] {
+    return this.list;
   }
 
-  public toString(array: number[]) {
-    let listString: string = "[" + array + "]";
-    return listString;
+  valorDeCorte(numCorte: number) {
+    this.list = this.list.filter(str => Number(str) !== numCorte)   
+    return this.list; 
   }
 
-  public valorCorte(numCorte: number): string {
-    for (let i = 0; i < this.list.length; i++) {
-      if (this.list[i] === numCorte) {
-        this.list.splice(i, 1);
-        i--;
-      }
-    }
-    return "[" + this.list + "]";
-  }
-
-  public removeMultiplos(multiplo: number) {
-    if (multiplo <= 0) {
-      return "[" + this.list + "]";
-    } else {
-        
-      for (let i = 0; i < this.list.length; i++) {
-        if (this.list[i] % multiplo === 0) {
-          this.list.splice(i, 1);
-          i--;
-        }
-      }
-    }
-
-    return "[" + this.list + "]";
+  removeMultiplo(numCorte: number) {
+    this.list = this.list.filter(str => (Number(str) % numCorte) !== 0)  
+    return this.list;  
   }
 }
 
-const dados = new Dados(5, 100);
-console.log(dados.returnList());
-// console.log(dados.valorCorte(2));
-console.log(dados.removeMultiplos(5));
+const dados = new Dados(15);
+console.log(dados.getArray());
+console.log(dados.valorDeCorte(10));
+console.log(dados.removeMultiplo(2));
