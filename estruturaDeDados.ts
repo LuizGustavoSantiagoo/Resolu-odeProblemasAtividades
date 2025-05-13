@@ -20,18 +20,10 @@ class Dados {
     return this.list;
   }
 
-  valorDeCorte(numCorte: number) {
-    this.list = this.list.filter(str => Number(str) !== numCorte)   
-    return this.list; 
-  }
-
-  removeMultiplo(numCorte: number) {
-    this.list = this.list.filter(str => (Number(str) % numCorte) !== 0)  
-    return this.list;  
-  }
+  
 }
 
-const dados = new Dados(15);
-console.log(dados.getArray());
-console.log(dados.valorDeCorte(10));
-console.log(dados.removeMultiplo(2));
+const dados = new Dados(5, 100);
+console.log(dados.returnList());
+// console.log(dados.valorCorte(2));
+console.log(dados.removeMultiplos(5));
